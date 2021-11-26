@@ -34,3 +34,9 @@ u = train_data.nunique().sort_values()
 # 2. Categorical values
 # 2.1. two values: use label encoder
 # 2.2. various data such as name: drop
+
+train['Embarked'].value_counts()
+
+def clean_data(data):
+  data.drop(['Cabin','Name','Ticket']. axis=1, inplace=True)
+  data['Age'] = data.groupby(['Pclass','Sex'])['Age'].transform(lambda x:x.fillna(x.median()))
